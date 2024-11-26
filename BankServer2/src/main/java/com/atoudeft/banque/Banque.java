@@ -1,6 +1,5 @@
 package com.atoudeft.banque;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -49,7 +48,7 @@ public class Banque implements Serializable {
      * @return  true si le compte-bancaire appartient au compte-client
      */
     public boolean appartientA(String numeroCompteBancaire, String numeroCompteClient) {
-        throw new NotImplementedException();
+        return false;
     }
 
     /**
