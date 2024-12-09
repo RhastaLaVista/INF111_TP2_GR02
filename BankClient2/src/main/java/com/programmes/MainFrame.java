@@ -6,6 +6,7 @@ import com.atoudeft.commun.evenement.GestionnaireEvenement;
 import com.atoudeft.controleur.EcouteurMenuPrincipal;
 import com.atoudeft.observer.Observable;
 import com.atoudeft.observer.Observateur;
+import com.atoudeft.vue.PanneauConfigServeur;
 import com.atoudeft.vue.PanneauPrincipal;
 
 
@@ -63,6 +64,10 @@ public class MainFrame extends JFrame implements Runnable, Observateur {
         miQuitter.setActionCommand("QUITTER");
         miConfigurer.setActionCommand("CONFIGURER");
 
+        // Initialiser les états des items de menu par défaut (Azouaou)
+        miConnecter.setEnabled(true);
+        miDeconnecter.setEnabled(false);
+
         miConnecter.addActionListener(ecouteurMenuPrincipal);
         miDeconnecter.addActionListener(ecouteurMenuPrincipal);
         miQuitter.addActionListener(ecouteurMenuPrincipal);
@@ -75,7 +80,6 @@ public class MainFrame extends JFrame implements Runnable, Observateur {
         mDemarrer.addSeparator();
         mDemarrer.add(miQuitter);
 
-        miDeconnecter.setEnabled(false);
 
         JMenuBar mb = new JMenuBar();
         mb.add(mDemarrer);
@@ -83,6 +87,14 @@ public class MainFrame extends JFrame implements Runnable, Observateur {
         this.setContentPane(panneauPrincipal);
         panneauPrincipal.setVisible(false);
         this.setJMenuBar(mb);
+
+        miConfigurer.addActionListener(e -> {
+
+            // Utiliser le panneau de configuration (PanneauConfigServeur)
+            PanneauConfigServeur PanneauConfigServeur = new PanneauConfigServeur("127.0.0.1", 8080);
+
+        });
+
     }
 
     public static void main(String[] args) {
@@ -94,11 +106,25 @@ public class MainFrame extends JFrame implements Runnable, Observateur {
         if (observable instanceof Client) {
             Client client = (Client)observable;
             if (!client.isConnecte()) {
-                this.setTitle(TITRE);
-                this.panneauPrincipal.setVisible(false);
+                //Azouaou Hamouimeche
+                // Le client est connecté.
+                miConnecter.setEnabled(false);
+                miDeconnecter.setEnabled(true);
+                this.setTitle(TITRE+ " - Connecté");
+                this.panneauPrincipal.setVisible(true);
+
+            }
+            // Le ! inverse le boolean qui donne false
+            if (!client.isConnecte()) {
+                // Le client est déconnecté.
+                miConnecter.setEnabled(true);
+                miDeconnecter.setEnabled(false);
+                this.setTitle(TITRE+ " - Déconnecté");
+                panneauPrincipal.setVisible(false);
                 panneauPrincipal.cacherPanneauCompteClient();
                 panneauPrincipal.montrerPanneauConnexion();
             }
+
         }
     }
 }
