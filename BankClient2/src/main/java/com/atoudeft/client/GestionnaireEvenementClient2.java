@@ -103,25 +103,16 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                 case "SELECT" :
                     arg = evenement.getArgument();
                     System.out.println(arg);
-                    result ="";
-                    String numcompte = "";
-                    String solde = "";
 
 
-                    if(!arg.equals("NO")) {
+                    if(arg.equals("NO")){JOptionPane.showMessageDialog(panneauPrincipal,"SELECT ECHOUEE");}
+                    else{
                         String []elements = arg.split("\\s+", 3);
                         result = elements[0];
-                        numcompte = elements[1];
-                        solde = elements[2];
-
-                        System.out.println(numcompte + result  + solde);
-                    }else {result = arg;}
-
-                    System.out.println(result + numcompte + solde);
-
-                    if(result == "NO"){JOptionPane.showMessageDialog(panneauPrincipal,"SELECT ECHOUEE");}
-                    else{JOptionPane.showMessageDialog(panneauPrincipal,"SELECT REUSSIE "+ numcompte);
-                         panneauPrincipal.getpanneauOperationsCompte().getLblSolde().setText("Solde : "+ solde);}
+                        String numcompte = elements[1];
+                        String solde = elements[2];
+                        JOptionPane.showMessageDialog(panneauPrincipal,"SELECT REUSSIE "+ numcompte);
+                        panneauPrincipal.getpanneauOperationsCompte().getLblSolde().setText("Solde : "+ solde);}
 
                     panneauPrincipal.update(panneauPrincipal.getGraphics());
                     break;

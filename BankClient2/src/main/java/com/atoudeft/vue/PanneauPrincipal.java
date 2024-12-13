@@ -54,6 +54,7 @@ public class PanneauPrincipal  extends JPanel {
 
         panneauCompteClient.add(panneauOperationsCompte, BorderLayout.NORTH);
         panneauCompteClient.add(jlNumerosComptes, BorderLayout.WEST);
+
         //Enregistrement de l'écouteur de souris:
         jlNumerosComptes.addMouseListener(new EcouteurListeComptes(client));
 
@@ -96,5 +97,5 @@ public class PanneauPrincipal  extends JPanel {
     }
 
     public PanneauOperationsCompte getpanneauOperationsCompte(){return panneauOperationsCompte;}
-
+    public JList<String> getJlNumerosComptes() {return jlNumerosComptes;}//Getter pour EcouteurListeComptes
 }

@@ -26,20 +26,24 @@ public class EcouteurListeComptes extends MouseAdapter {
     public void mouseClicked(MouseEvent evt) {
         Object source = evt.getSource();
 
-        String action;
+        if(source instanceof JList) {
+            ((JList<?>) source).getSelectedIndex();
 
-        if (source instanceof JMenuItem) {
 
-            if (evt.getClickCount() == 1 && !evt.isConsumed()) {
+            if (evt.getClickCount() == 2 && !evt.isConsumed()) {
                 evt.consume();//Gestion de Click double
-                System.out.println(source.toString());
-                action = ((JMenuItem) source).getActionCommand();
-                System.out.println(action);
-                client.envoyer("SELECT "+ action);
 
+                int type = ((JList<?>) source).getSelectedIndex();//cheque = 0 car Il est le premier.
+                                                                  //epargne = 2 car il vient toujours le deuxieme et seulement une seule peut etre cree.
+                switch (type){
+                    case 0:
+                        this.client.envoyer("SELECT cheque");
+                        break;
+                    case 1:
+                        this.client.envoyer("SELECT epargne");
+                        break;
 
-
-
+                }
             }
         }
     }
