@@ -82,11 +82,48 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                 /******************* SÉLECTION DE COMPTES *******************/
                 case "EPARGNE" :
                     arg = evenement.getArgument();
-                    JOptionPane.showMessageDialog(panneauPrincipal,"EPARGNE "+arg);
+                    System.out.println(arg);
+
+                    String result = "";
+                    String numcompteEpargne = "";
+
+                    if(!arg.equals("NO")) {
+                        String[] elements = arg.split("\\s+", 2);
+                        result = elements[0];
+                        numcompteEpargne = elements[1];
+                        System.out.println(numcompteEpargne+result);
+                    }
+
+
+                    if(result.equals("NO")){JOptionPane.showMessageDialog(panneauPrincipal,"ERREUR:EPARGNE ECHOUEE! ");}
+                    else{JOptionPane.showMessageDialog(panneauPrincipal,"EPARGNE REUSSI num:"+ numcompteEpargne); panneauPrincipal.ajouterCompte(numcompteEpargne);}
                     break;
+
+
                 case "SELECT" :
                     arg = evenement.getArgument();
-                    JOptionPane.showMessageDialog(panneauPrincipal,"SELECT "+arg);
+                    System.out.println(arg);
+                    result ="";
+                    String numcompte = "";
+                    String solde = "";
+
+
+                    if(!arg.equals("NO")) {
+                        String []elements = arg.split("\\s+", 3);
+                        result = elements[0];
+                        numcompte = elements[1];
+                        solde = elements[2];
+
+                        System.out.println(numcompte + result  + solde);
+                    }else {result = arg;}
+
+                    System.out.println(result + numcompte + solde);
+
+                    if(result == "NO"){JOptionPane.showMessageDialog(panneauPrincipal,"SELECT ECHOUEE");}
+                    else{JOptionPane.showMessageDialog(panneauPrincipal,"SELECT REUSSIE "+ numcompte);
+                         panneauPrincipal.getpanneauOperationsCompte().getLblSolde().setText("Solde : "+ solde);}
+
+                    panneauPrincipal.update(panneauPrincipal.getGraphics());
                     break;
 
                 /******************* OPÉRATIONS BANCAIRES *******************/
