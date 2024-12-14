@@ -136,7 +136,9 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                     JOptionPane.showMessageDialog(panneauPrincipal,"TRANSFER " + arg);
                 case "HIST" :
                     arg = evenement.getArgument();
-                    JOptionPane.showMessageDialog(panneauPrincipal,arg);
+
+
+                    JOptionPane.showMessageDialog(panneauPrincipal,arg,"Historique du compte",JOptionPane.INFORMATION_MESSAGE);
                     break;
                 /******************* TRAITEMENT PAR DÉFAUT *******************/
                 default:
