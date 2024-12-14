@@ -2,6 +2,7 @@ package com.atoudeft.controleur;
 
 import com.atoudeft.client.Client;
 import com.atoudeft.vue.PanneauConnexion;
+import com.atoudeft.vue.PanneauOperationBancaire;
 
 import javax.swing.*;
 import javax.xml.transform.Source;
