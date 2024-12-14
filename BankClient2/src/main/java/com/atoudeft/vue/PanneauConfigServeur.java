@@ -43,6 +43,46 @@ public class PanneauConfigServeur extends JPanel {
         JPanel panneauBoutons = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         JButton okButton = new JButton("OK");
         JButton annulerButton = new JButton("Annuler");
+
+        // Action du bouton OK
+        okButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String adrIP = txtAdrServeur.getText();
+                String port = txtNumPort.getText();
+
+
+                while (true) {
+                    try {
+                        if (port.matches("\\d+")) {
+                            JOptionPane.showMessageDialog(null, "Configuration sauvegardée");
+                            ((JFrame) SwingUtilities.getWindowAncestor(PanneauConfigServeur)).dispose();
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "Le port doit être un nombre entier.");
+                        };
+                        break;
+                    } catch (NumberFormatException ex) {
+
+                        JOptionPane.showMessageDialog(null, "Le port doit être un nombre entier.");
+
+                    }
+                }
+            }
+        });
+
+
+        annulerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Annuler la configuration et fermer la fenêtre
+                JOptionPane.showMessageDialog(null, "Configuration annulée");
+                ((JFrame) SwingUtilities.getWindowAncestor(PanneauConfigServeur)).dispose();
+            }
+        });
+
+
+
         panneauBoutons.add(okButton);
         panneauBoutons.add(annulerButton);
 

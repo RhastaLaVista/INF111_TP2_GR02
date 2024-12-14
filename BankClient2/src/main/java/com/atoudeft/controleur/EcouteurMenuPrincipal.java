@@ -1,6 +1,7 @@
 package com.atoudeft.controleur;
 
 import com.atoudeft.client.Client;
+import com.atoudeft.vue.PanneauConfigServeur;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,7 +53,22 @@ public class EcouteurMenuPrincipal implements ActionListener {
                     break;
                 case "CONFIGURER":
                     //TODO : compléter (question 1.3)
-                    break;
+                    // Récupérer les configurations actuelles du client
+                    String adrActuelle = client.getAdrServeur();
+                    int portAct = client.getPortServeur();
+
+                    // Ouvrir directement la fenêtre de configuration
+                    SwingUtilities.invokeLater(() -> {
+                        new PanneauConfigServeur(adrActuelle, portAct);
+                    });
+
+
+
+
+
+
+
+                break;
                 case "QUITTER":
                     if (client.isConnecte()) {
                         res = JOptionPane.showConfirmDialog(fenetre, "Vous allez vous déconnecter",

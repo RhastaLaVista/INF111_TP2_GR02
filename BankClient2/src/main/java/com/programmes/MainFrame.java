@@ -88,12 +88,7 @@ public class MainFrame extends JFrame implements Runnable, Observateur {
         panneauPrincipal.setVisible(false);
         this.setJMenuBar(mb);
 
-        miConfigurer.addActionListener(e -> {
 
-            // Utiliser le panneau de configuration (PanneauConfigServeur)
-            PanneauConfigServeur PanneauConfigServeur = new PanneauConfigServeur("127.0.0.1", 8080);
-
-        });
 
     }
 
