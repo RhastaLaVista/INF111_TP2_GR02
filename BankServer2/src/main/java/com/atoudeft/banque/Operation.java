@@ -13,6 +13,6 @@ public abstract class Operation implements Serializable {
     }
     @Override
     public String toString() {
-        return date + "\t" + type;
+        return date +"\t" + type+"\t";
     }
 }
