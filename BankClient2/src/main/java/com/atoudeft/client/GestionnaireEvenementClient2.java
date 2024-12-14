@@ -82,28 +82,26 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                 /******************* SÉLECTION DE COMPTES *******************/
                 case "EPARGNE" :
                     arg = evenement.getArgument();
-                    System.out.println(arg);
 
                     String result = "";
                     String numcompteEpargne = "";
 
-                    if(!arg.equals("NO")) {
+
+                    if(arg.equals("NO")){JOptionPane.showMessageDialog(panneauPrincipal,"ERREUR:EPARGNE ECHOUEE! ");}
+                    else{
                         String[] elements = arg.split("\\s+", 2);
                         result = elements[0];
                         numcompteEpargne = elements[1];
                         System.out.println(numcompteEpargne+result);
-                    }
 
-
-                    if(result.equals("NO")){JOptionPane.showMessageDialog(panneauPrincipal,"ERREUR:EPARGNE ECHOUEE! ");}
-                    else{JOptionPane.showMessageDialog(panneauPrincipal,"EPARGNE REUSSI num:"+ numcompteEpargne); panneauPrincipal.ajouterCompte(numcompteEpargne);}
+                        JOptionPane.showMessageDialog(panneauPrincipal,"EPARGNE REUSSI num:"+ numcompteEpargne);
+                        panneauPrincipal.ajouterCompte(numcompteEpargne);}
+                        panneauPrincipal.update(panneauPrincipal.getGraphics());
                     break;
 
 
                 case "SELECT" :
                     arg = evenement.getArgument();
-                    System.out.println(arg);
-
 
                     if(arg.equals("NO")){JOptionPane.showMessageDialog(panneauPrincipal,"SELECT ECHOUEE");}
                     else{
