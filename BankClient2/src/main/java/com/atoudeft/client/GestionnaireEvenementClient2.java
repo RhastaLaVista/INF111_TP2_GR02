@@ -107,12 +107,13 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
 
                     if(arg.equals("NO")){JOptionPane.showMessageDialog(panneauPrincipal,"SELECT ECHOUEE");}
                     else{
-                        String []elements = arg.split("\\s+", 3);
-                        result = elements[0];
-                        String numcompte = elements[1];
-                        String solde = elements[2];
-                        JOptionPane.showMessageDialog(panneauPrincipal,"SELECT REUSSIE "+ numcompte);
-                        panneauPrincipal.getpanneauOperationsCompte().getLblSolde().setText("Solde : "+ solde);}
+                         String []elements = arg.split("\\s+", 3);
+                         result = elements[0];
+                         String numcompte = elements[1];
+                         String solde = elements[2];
+
+                         JOptionPane.showMessageDialog(panneauPrincipal,"SELECT REUSSIE "+ numcompte);
+                         panneauPrincipal.getpanneauOperationsCompte().getLblSolde().setText("Solde : "+ solde);}
 
                     panneauPrincipal.update(panneauPrincipal.getGraphics());
                     break;
@@ -133,6 +134,9 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                 case "TRANSFER" :
                     arg = evenement.getArgument();
                     JOptionPane.showMessageDialog(panneauPrincipal,"TRANSFER " + arg);
+                case "HIST" :
+                    arg = evenement.getArgument();
+                    JOptionPane.showMessageDialog(panneauPrincipal,arg);
                     break;
                 /******************* TRAITEMENT PAR DÉFAUT *******************/
                 default:

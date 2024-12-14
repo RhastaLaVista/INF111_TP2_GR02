@@ -23,7 +23,10 @@ public class EcouteurOperationsCompte implements ActionListener {
             nomAction = ((JButton) source).getActionCommand();
             switch (nomAction) {
                 case "EPARGNE":
-                    client.envoyer("EPARGNE");
+                    client.envoyer(nomAction);
+                    break;
+                case "HIST":
+                    client.envoyer(nomAction);
                     break;
             }
 
