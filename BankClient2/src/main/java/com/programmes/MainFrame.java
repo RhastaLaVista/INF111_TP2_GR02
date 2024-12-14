@@ -99,11 +99,11 @@ public class MainFrame extends JFrame implements Runnable, Observateur {
     @Override
     public void seMettreAJour(Observable observable) {
 
-            if (!this.client.isConnecte()) {
+            if (this.client.isConnecte()) {
                 //Azouaou Hamouimeche
                 miConnecter.setEnabled(false);
                 miDeconnecter.setEnabled(true);
-                setTitle(TITRE+ " - Connecté");
+
                 panneauPrincipal.setVisible(true);
 
                 getJMenuBar().update(getGraphics());
@@ -111,7 +111,7 @@ public class MainFrame extends JFrame implements Runnable, Observateur {
             }else{
                 miConnecter.setEnabled(true);
                 miDeconnecter.setEnabled(false);
-                this.setTitle(TITRE+ " - Déconnecté");
+
                 panneauPrincipal.setVisible(false);
                 panneauPrincipal.cacherPanneauCompteClient();
                 panneauPrincipal.montrerPanneauConnexion();

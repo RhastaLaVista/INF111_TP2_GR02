@@ -1,6 +1,7 @@
 package com.atoudeft.vue;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 public class PanneauOperationBancaire extends JPanel {
 
@@ -16,6 +17,12 @@ public class PanneauOperationBancaire extends JPanel {
     private JTextField textFieldNumCompte;
     private JButton btnEffectuerOperation;
 
+    public int M_depot = 0;
+    public int M_retrait = 1;
+    public int M_transfer = 2;
+    public int M_facture = 3;
+
+    private int currentM = 0;
     /**
      * Create the panel.
      */
@@ -67,62 +74,118 @@ public class PanneauOperationBancaire extends JPanel {
         lblOpérationBancaire.setBounds(105, 11, 182, 17);
         add(lblOpérationBancaire);
 
-        //btnEffectuerOperation = new JButton("Effectuer opération");
-        //btnEffectuerOperation.setBounds(88, 167, 156, 23);
-        //add(btnEffectuerOperation);
+        btnEffectuerOperation = new JButton("Effectuer opération");
+        btnEffectuerOperation.setBounds(88, 167, 156, 23);
+        btnEffectuerOperation.setActionCommand("EFFECTUER");
+        add(btnEffectuerOperation);
+
 
     }
 
     public void setModeDepot() {
         lblOpérationBancaire.setText("Depot:");
+        lblMonant.setVisible(true);
+        textFMontant.setVisible(true);
         lblNBFacture.setVisible(false);
         textFieldFacture.setVisible(false);
         lblDescFacture.setVisible(false);
         textFieldDescription.setVisible(false);
         lblNumCompte.setVisible(false);
         textFieldNumCompte.setVisible(false);
+        btnEffectuerOperation.setVisible(true);
+
+        this.currentM = M_depot;
+
+        super.update(super.getGraphics());
     }
 
     public void setModeRetrait() {
         lblOpérationBancaire.setText("Retrait:");
+        lblMonant.setVisible(true);
+        textFMontant.setVisible(true);
         lblNBFacture.setVisible(false);
         textFieldFacture.setVisible(false);
         lblDescFacture.setVisible(false);
         textFieldDescription.setVisible(false);
         lblNumCompte.setVisible(false);
         textFieldNumCompte.setVisible(false);
+        btnEffectuerOperation.setVisible(true);
+
+        this.currentM = M_retrait;
+
+        super.update(super.getGraphics());
     }
 
     public void setModeFacture() {
         lblOpérationBancaire.setText("Payement de facture:");
-    }
-
-    public void setModeTransfert() {
-        lblOpérationBancaire.setText("Transfert:");
-    }
-
-    public void setModeDefault() {
-        lblOpérationBancaire.setText("Opération Bancaire:");
+        lblMonant.setVisible(true);
+        textFMontant.setVisible(true);
         lblNBFacture.setVisible(true);
         textFieldFacture.setVisible(true);
         lblDescFacture.setVisible(true);
         textFieldDescription.setVisible(true);
-        lblNumCompte.setVisible(true);
-        textFieldNumCompte.setVisible(true);
+        lblNumCompte.setVisible(false);
+        textFieldNumCompte.setVisible(false);
+        btnEffectuerOperation.setVisible(true);
+
+        this.currentM = M_facture;
+
+        super.update(super.getGraphics());
     }
 
-    public String getNumFacture() {
-        return textFieldFacture.getText();
+    public void setModeTransfert() {
+        lblOpérationBancaire.setText("Transfert:");
+        lblMonant.setVisible(true);
+        textFMontant.setVisible(true);
+        lblNBFacture.setVisible(false);
+        textFieldFacture.setVisible(false);
+        lblDescFacture.setVisible(false);
+        textFieldDescription.setVisible(false);
+        lblNumCompte.setVisible(true);
+        textFieldNumCompte.setVisible(true);
+        btnEffectuerOperation.setVisible(true);
+
+        this.currentM = M_transfer;
+
+        super.update(super.getGraphics());
     }
-    public String getMontant() {
-        return textFMontant.getText();
+
+    public void setModeDefault() {
+        lblOpérationBancaire.setText("Opération Bancaire:");
+        lblMonant.setVisible(false);
+        textFMontant.setVisible(false);
+        lblNBFacture.setVisible(false);
+        textFieldFacture.setVisible(false);
+        lblDescFacture.setVisible(false);
+        textFieldDescription.setVisible(false);
+        lblNumCompte.setVisible(false);
+        textFieldNumCompte.setVisible(false);
+        btnEffectuerOperation.setVisible(false);
+        super.update(super.getGraphics());
     }
+
+    public String getNumFacture() { return textFieldFacture.getText(); }
+
+    public String getMontant() { return textFMontant.getText(); }
+
     public String getDescFacture() {
         return textFieldDescription.getText();
     }
 
     public String getNumCompte() {
         return textFieldNumCompte.getText();
+    }
+
+    public int getmode(){return currentM;}
+
+    public void resetvalues(){
+        this.textFMontant.setText("");
+        this.textFieldDescription.setText("");
+        this.textFieldFacture.setText("");
+        this.textFieldNumCompte.setText("");
+    }
+    public void setListener(ActionListener Ecouteur){
+        this.btnEffectuerOperation.addActionListener(Ecouteur);
     }
 }
 

@@ -14,12 +14,15 @@ public class EcouteurOperationsCompte implements ActionListener {
     public EcouteurOperationsCompte(Client client, PanneauOperationBancaire panneauOperationBancaire) {
         this.client = client;
         this.panneau = panneauOperationBancaire;
+        this.panneau.setModeDefault();
+        this.panneau.setListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         String nomAction;
+        int currentmode = panneau.getmode();
         if (source instanceof JButton) {
             nomAction = ((JButton) source).getActionCommand();
             switch (nomAction) {
@@ -30,21 +33,42 @@ public class EcouteurOperationsCompte implements ActionListener {
                     client.envoyer(nomAction);
                     break;
                 case "DEPOT":
-                    client.envoyer("DEPOT "+ panneau.getMontant());
+                    panneau.setModeDepot();
+                    panneau.resetvalues();
                     break;
                 case "RETRAIT":
-                    client.envoyer("RETRAIT "+ panneau.getMontant());
+                    panneau.setModeRetrait();
+                    panneau.resetvalues();
                     break;
                 case "FACTURE":
-                    client.envoyer("FACTURE "+ panneau.getMontant() + " "+ panneau.getNumFacture() + " "+ panneau.getDescFacture());
+                    panneau.setModeFacture();
+                    panneau.resetvalues();
                     break;
                 case "TRANSFER":
-                    client.envoyer("TRANSFER " + panneau.getMontant() + " " + panneau.getNumCompte());
+                    panneau.setModeTransfert();
+                    panneau.resetvalues();
                     break;
-
+                case"EFFECTUER":
+                    switch(currentmode) {
+                        case 0:
+                            client.envoyer("DEPOT " + panneau.getMontant());
+                            System.out.println("Depoed lmao");
+                            panneau.resetvalues();
+                            break;
+                        case 1:
+                            client.envoyer("RETRAIT " + panneau.getMontant());
+                            panneau.resetvalues();
+                            break;
+                        case 2:
+                            client.envoyer("TRANSFER " + panneau.getMontant() + " " + panneau.getNumCompte());
+                            panneau.resetvalues();
+                            break;
+                        case 3:
+                            client.envoyer("FACTURE " + panneau.getMontant() + " " + panneau.getNumFacture() + " " + panneau.getDescFacture());
+                            panneau.resetvalues();
+                            break;
+                    }
             }
-
-
         }
     }
 }
