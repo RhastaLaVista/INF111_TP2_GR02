@@ -24,6 +24,8 @@ public class PanneauPrincipal  extends JPanel {
     private JPanel panneauCompteClient;
     private PanneauOperationsCompte panneauOperationsCompte;
 
+    private PanneauOperationBancaire panneauOperationBancaire;
+
     private DefaultListModel<String> numerosComptes;
     private JList<String> jlNumerosComptes;
     private JDesktopPane bureau;
@@ -36,7 +38,6 @@ public class PanneauPrincipal  extends JPanel {
         panneauConnexion.setEcouteur(new EcouteurConnexion(client,panneauConnexion));
 
         panneauOperationsCompte = new PanneauOperationsCompte();
-        panneauOperationsCompte.setEcouteur((new EcouteurOperationsCompte(client)));
 
         panneauCompteClient = new JPanel();
 
@@ -63,8 +64,11 @@ public class PanneauPrincipal  extends JPanel {
         this.add(panneauCompteClient, BorderLayout.CENTER);
         panneauCompteClient.setVisible(false);
 
+        panneauOperationBancaire = new PanneauOperationBancaire();
+        panneauCompteClient.add(panneauOperationBancaire);
+        panneauOperationBancaire.setVisible(true);
+        panneauOperationsCompte.setEcouteur(new EcouteurOperationsCompte(client,panneauOperationBancaire));
     }
-
     /**
      * Vide les éléments d'interface du panneauPrincipal.
      */
