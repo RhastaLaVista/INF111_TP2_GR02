@@ -41,9 +41,7 @@ public class EcouteurOperationsCompte implements ActionListener {
                 case "TRANSFER":
                     client.envoyer("TRANSFER " + panneau.getMontant() + " " + panneau.getNumCompte());
                     break;
-                case "HIST":
-                    client.envoyer("HIST");
-                    break;
+
             }
 
 
