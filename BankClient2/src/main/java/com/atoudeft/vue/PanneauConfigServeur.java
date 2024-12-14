@@ -37,8 +37,6 @@ public class PanneauConfigServeur extends JPanel {
         txtNumPort = new JTextField(String.valueOf(port));
         panneauChamps.add(txtNumPort);
 
-
-
         // Panneau des boutons
         JPanel panneauBoutons = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         JButton okButton = new JButton("OK");
@@ -81,11 +79,8 @@ public class PanneauConfigServeur extends JPanel {
             }
         });
 
-
-
         panneauBoutons.add(okButton);
         panneauBoutons.add(annulerButton);
-
 
         // Bouton d'aide à gauche
         JButton helpButton = new JButton("?");
@@ -96,14 +91,6 @@ public class PanneauConfigServeur extends JPanel {
         PanneauConfigServeur.add(helpButton, BorderLayout.WEST);
         PanneauConfigServeur.add(panneauChamps, BorderLayout.CENTER);
         PanneauConfigServeur.add(panneauBoutons, BorderLayout.SOUTH);
-
-
-
-
-
-
-
-
 
 
         JFrame fenetre = new JFrame("Configuration serveur");

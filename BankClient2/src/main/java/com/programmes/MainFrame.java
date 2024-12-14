@@ -109,7 +109,7 @@ public class MainFrame extends JFrame implements Runnable, Observateur {
                 this.panneauPrincipal.setVisible(true);
 
             }
-            // Le ! inverse le boolean qui donne false
+
             if (!client.isConnecte()) {
                 // Le client est déconnecté.
                 miConnecter.setEnabled(true);

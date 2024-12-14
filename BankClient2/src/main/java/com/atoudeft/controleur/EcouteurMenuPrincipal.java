@@ -62,12 +62,6 @@ public class EcouteurMenuPrincipal implements ActionListener {
                         new PanneauConfigServeur(adrActuelle, portAct);
                     });
 
-
-
-
-
-
-
                 break;
                 case "QUITTER":
                     if (client.isConnecte()) {
