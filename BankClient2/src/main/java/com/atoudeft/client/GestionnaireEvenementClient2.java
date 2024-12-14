@@ -120,21 +120,27 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                 case "DEPOT" :
                     arg = evenement.getArgument();
                     JOptionPane.showMessageDialog(panneauPrincipal,"DEPOT "+arg);
+                    panneauPrincipal.update(panneauPrincipal.getGraphics());
                     break;
                 case "RETRAIT" :
                     arg = evenement.getArgument();
                     JOptionPane.showMessageDialog(panneauPrincipal,"RETRAIT "+arg);
+                    panneauPrincipal.update(panneauPrincipal.getGraphics());
                     break;
                 case "FACTURE" :
                     arg = evenement.getArgument();
-                    JOptionPane.showMessageDialog(panneauPrincipal,"FACTURE" + arg);
+                    JOptionPane.showMessageDialog(panneauPrincipal,"FACTURE " +arg);
+                    panneauPrincipal.update(panneauPrincipal.getGraphics());
                     break;
                 case "TRANSFER" :
                     arg = evenement.getArgument();
                     JOptionPane.showMessageDialog(panneauPrincipal,"TRANSFER " + arg);
+                    panneauPrincipal.update(panneauPrincipal.getGraphics());
+                    break;
                 case "HIST" :
                     arg = evenement.getArgument();
                     JOptionPane.showMessageDialog(panneauPrincipal,arg,"Historique du compte",JOptionPane.PLAIN_MESSAGE);
+                    panneauPrincipal.update(panneauPrincipal.getGraphics());
                     break;
                 /******************* TRAITEMENT PAR DÉFAUT *******************/
                 default:
