@@ -12,6 +12,6 @@ public class OperationFacture extends Operation {
     }
     @Override
     public String toString() {
-        return super.toString() + "\t"+ montant + "$\t" + numero+ "$\t" + description;
+        return super.toString() + "\t"+ montant + "$\t" + numero+ "\t" + description+"\t" ;
     }
 }

@@ -3,6 +3,7 @@ package com.atoudeft.vue;
 import com.atoudeft.client.Client;
 import com.atoudeft.controleur.EcouteurConnexion;
 import com.atoudeft.controleur.EcouteurListeComptes;
+import com.atoudeft.controleur.EcouteurOperationsCompte;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,6 +36,7 @@ public class PanneauPrincipal  extends JPanel {
         panneauConnexion.setEcouteur(new EcouteurConnexion(client,panneauConnexion));
 
         panneauOperationsCompte = new PanneauOperationsCompte();
+        panneauOperationsCompte.setEcouteur((new EcouteurOperationsCompte(client)));
 
         panneauCompteClient = new JPanel();
 
@@ -52,6 +54,7 @@ public class PanneauPrincipal  extends JPanel {
 
         panneauCompteClient.add(panneauOperationsCompte, BorderLayout.NORTH);
         panneauCompteClient.add(jlNumerosComptes, BorderLayout.WEST);
+
         //Enregistrement de l'écouteur de souris:
         jlNumerosComptes.addMouseListener(new EcouteurListeComptes(client));
 
@@ -60,6 +63,7 @@ public class PanneauPrincipal  extends JPanel {
         this.add(panneauConnexion, BorderLayout.NORTH);
         this.add(panneauCompteClient, BorderLayout.CENTER);
         panneauCompteClient.setVisible(false);
+
     }
 
     /**
@@ -91,4 +95,7 @@ public class PanneauPrincipal  extends JPanel {
     public void ajouterCompte(String str) {
         numerosComptes.addElement(str);
     }
+
+    public PanneauOperationsCompte getpanneauOperationsCompte(){return panneauOperationsCompte;}
+    public JList<String> getJlNumerosComptes() {return jlNumerosComptes;}//Getter pour EcouteurListeComptes
 }

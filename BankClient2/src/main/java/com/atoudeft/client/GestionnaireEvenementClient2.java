@@ -82,11 +82,38 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                 /******************* SÉLECTION DE COMPTES *******************/
                 case "EPARGNE" :
                     arg = evenement.getArgument();
-                    JOptionPane.showMessageDialog(panneauPrincipal,"EPARGNE "+arg);
+
+                    String result = "";
+                    String numcompteEpargne = "";
+
+
+                    if(arg.equals("NO")){JOptionPane.showMessageDialog(panneauPrincipal,"ERREUR:EPARGNE ECHOUEE! ");}
+                    else{
+                        String[] elements = arg.split("\\s+", 2);
+                        result = elements[0];
+                        numcompteEpargne = elements[1];
+                        System.out.println(numcompteEpargne+result);
+
+                        JOptionPane.showMessageDialog(panneauPrincipal,"EPARGNE REUSSI num:"+ numcompteEpargne);
+                        panneauPrincipal.ajouterCompte(numcompteEpargne);}
+                        panneauPrincipal.update(panneauPrincipal.getGraphics());
                     break;
+
+
                 case "SELECT" :
                     arg = evenement.getArgument();
-                    JOptionPane.showMessageDialog(panneauPrincipal,"SELECT "+arg);
+
+                    if(arg.equals("NO")){JOptionPane.showMessageDialog(panneauPrincipal,"SELECT ECHOUEE");}
+                    else{
+                         String []elements = arg.split("\\s+", 3);
+                         result = elements[0];
+                         String numcompte = elements[1];
+                         String solde = elements[2];
+
+                         JOptionPane.showMessageDialog(panneauPrincipal,"SELECT REUSSIE "+ numcompte);
+                         panneauPrincipal.getpanneauOperationsCompte().getLblSolde().setText("Solde : "+ solde);}
+
+                    panneauPrincipal.update(panneauPrincipal.getGraphics());
                     break;
 
                 /******************* OPÉRATIONS BANCAIRES *******************/
@@ -105,6 +132,11 @@ public class GestionnaireEvenementClient2 implements GestionnaireEvenement {
                 case "TRANSFER" :
                     arg = evenement.getArgument();
                     JOptionPane.showMessageDialog(panneauPrincipal,"TRANSFER " + arg);
+                case "HIST" :
+                    arg = evenement.getArgument();
+
+
+                    JOptionPane.showMessageDialog(panneauPrincipal,arg,"Historique du compte",JOptionPane.INFORMATION_MESSAGE);
                     break;
                 /******************* TRAITEMENT PAR DÉFAUT *******************/
                 default:
